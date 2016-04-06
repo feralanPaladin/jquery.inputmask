@@ -3,7 +3,7 @@
 * https://github.com/RobinHerbots/jquery.inputmask
 * Copyright (c) 2010 - 2016 Robin Herbots
 * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
-* Version: 3.3.1-0
+* Version: 3.3.1-2
 */
 !function(factory) {
     "function" == typeof define && define.amd ? define([ "inputmask.dependencyLib", "inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("./inputmask.dependencyLib.jquery"), require("./inputmask")) : factory(window.dependencyLib || jQuery, window.Inputmask);
@@ -166,7 +166,7 @@
                             var dayMonthValue = maskset.buffer.join("").substr(4, 4) + chrs;
                             if (dayMonthValue !== opts.leapday) return !0;
                             var year = parseInt(maskset.buffer.join("").substr(0, 4), 10);
-                            return year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 ? !0 : !1 : !0 : !1;
+                            return year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 : !0 : !1;
                         }
                         return isValid;
                     },
@@ -191,7 +191,7 @@
                             var dayMonthValue = maskset.buffer.join("").substr(0, 6);
                             if (dayMonthValue !== opts.leapday) return !0;
                             var year = parseInt(chrs, 10);
-                            return year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 ? !0 : !1 : !0 : !1;
+                            return year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 : !0 : !1;
                         }
                         return !1;
                     },
@@ -228,7 +228,7 @@
                                     var dayMonthValue = maskset.buffer.join("").substr(0, 6);
                                     if (dayMonthValue !== opts.leapday) isValid = !0; else {
                                         var year = parseInt(chrs, 10);
-                                        isValid = year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 ? !0 : !1 : !0 : !1;
+                                        isValid = year % 4 === 0 ? year % 100 === 0 ? year % 400 === 0 : !0 : !1;
                                     }
                                 } else isValid = !1;
                                 if (isValid) return maskset.buffer[pos - 1] = yearPrefix.charAt(0), maskset.buffer[pos++] = yearPrefix.charAt(1), 

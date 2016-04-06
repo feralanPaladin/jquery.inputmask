@@ -7,6 +7,9 @@
 
  Optional extensions on the jquery.inputmask base
  */
+
+// OD_Edit (2015) : secondaryGroupSize is added to support the Indian currency format
+
 (function (factory) {
 	if (typeof define === "function" && define.amd) {
 		define(["inputmask.dependencyLib", "inputmask"], factory);
@@ -172,7 +175,13 @@
 					bufVal = opts.radixPoint === "" ? bufVal : radixSplit[0];
 					if (bufVal !== (opts.prefix + "?0") && bufVal.length >= (opts.groupSize + opts.prefix.length)) {
 						//needsRefresh = true;
-						var reg = new RegExp("([-\+]?[\\d\?]+)([\\d\?]{" + opts.groupSize + "})");
+					    var reg = new RegExp("([-\+]?[\\d\?]+)([\\d\?]{" + opts.groupSize + "})");
+
+					    // OD_Edit (2015) : secondaryGroupSize is added to support the Indian currency format
+					    if (opts.secondaryGroupSize) {
+					        reg = new RegExp("([\\d?])(([\\d?])([\\d?]{" + opts.secondaryGroupSize + "}?)+)$");
+					    }
+
 						while (reg.test(bufVal) && opts.groupSeparator !== "") {
 							bufVal = bufVal.replace(reg, "$1" + opts.groupSeparator + "$2");
 							bufVal = bufVal.replace(opts.groupSeparator + opts.groupSeparator, opts.groupSeparator);
